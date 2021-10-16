@@ -2,9 +2,11 @@ package com.example.feedbackprime
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.feedbackprime.databinding.ActivityExtractionBinding
 import org.json.JSONObject
 
@@ -26,6 +28,8 @@ class Extraction : AppCompatActivity() {
     }
 
     private fun sendAppId() {
+        Log.i("Extraction", "API called")
+
         val parameters = JSONObject()
         parameters.put("type", "application")
         parameters.put("appId", "316d68796574616370626830674c713457436241795068556a7277523853626e")
@@ -34,13 +38,18 @@ class Extraction : AppCompatActivity() {
             "57546179597542416a4e324d45542d6c543176394a48344d65564557613068434f726f426c6f627744787365746c304d654b6843377147334b75736b34574277"
         )
 
+        val queue = Volley.newRequestQueue(this)
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
-                accessToken = it.getString("expiresIn").toString()
+                Log.i("Extraction", "API called")
+                val temp = it.getJSONObject("")
+                accessToken = temp.getString("expiresIn")
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             })
-        MySingleton.getInstance(this).addToRequestQueue(req)
+
+        queue.add(req)
+//        MySingleton.getInstance(this).addToRequestQueue(req)
 
         binding.access.text = accessToken
     }
