@@ -32,18 +32,19 @@ class Extraction : AppCompatActivity() {
 
         val parameters = JSONObject()
         parameters.put("type", "application")
-        parameters.put("appId", "316d68796574616370626830674c713457436241795068556a7277523853626e")
+        parameters.put("appId", "706f657063505776757476457764344d7434674553644c53747a4d5757795156")
         parameters.put(
             "appSecret",
-            "57546179597542416a4e324d45542d6c543176394a48344d65564557613068434f726f426c6f627744787365746c304d654b6843377147334b75736b34574277"
+            "39594b715047596d51705a79704879786e526e52344a613676794659766142633859596e4c597975706263684c73483577684b67334a44313348784668436f57"
         )
 
         val queue = Volley.newRequestQueue(this)
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
-                Log.i("Extraction", "API called")
-                val temp = it.getJSONObject("")
-                accessToken = temp.getString("expiresIn")
+                Log.i("Extraction", "API called second")
+//                val temp = it.getJSONObject("")
+                accessToken = it.getString("accessToken")
+                Log.i("Extraction",accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             })
@@ -51,6 +52,5 @@ class Extraction : AppCompatActivity() {
         queue.add(req)
 //        MySingleton.getInstance(this).addToRequestQueue(req)
 
-        binding.access.text = accessToken
     }
 }
