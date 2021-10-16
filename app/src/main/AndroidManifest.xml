@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.feedbackprime">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FeedbackPrime"
         tools:replace="android:allowBackup,android:theme">
+        <activity
+            android:name=".VideoProcess"
+            android:exported="false" />
         <activity
             android:name=".Extraction"
             android:exported="false" />

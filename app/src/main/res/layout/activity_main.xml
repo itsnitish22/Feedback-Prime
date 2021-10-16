@@ -8,9 +8,12 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:backgroundTint="#2196F3"
+        android:text="Get Started"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

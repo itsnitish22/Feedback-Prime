@@ -1,5 +1,6 @@
 package com.example.feedbackprime
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,8 +24,16 @@ class Extraction : AppCompatActivity() {
         setContentView(binding.root)
 
         val url = intent.extras?.getString("url")
+        val name=intent.extras?.getString("name")
 
         sendAppId()
+        val intent= Intent(this,VideoProcess::class.java)
+        intent.putExtra("url",url)
+        intent.putExtra("name",name)
+        intent.putExtra("token",accessToken)
+//        startActivity(intent)
+
+
     }
 
     private fun sendAppId() {
@@ -44,6 +53,7 @@ class Extraction : AppCompatActivity() {
                 Log.i("Extraction", "API called second")
 //                val temp = it.getJSONObject("")
                 accessToken = it.getString("accessToken")
+                Toast.makeText(this,"Work in Progress",Toast.LENGTH_SHORT).show()
                 Log.i("Extraction",accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
