@@ -1,5 +1,6 @@
 package com.example.feedbackprime
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,8 +24,15 @@ class Extraction : AppCompatActivity() {
         setContentView(binding.root)
 
         val url = intent.extras?.getString("url")
+        val name=intent.extras?.getString("name")
 
         sendAppId()
+        val intent= Intent(this,VideoProcess::class.java)
+        intent.putExtra("url",url)
+        intent.putExtra("name",name)
+        intent.putExtra("token",accessToken)
+
+
     }
 
     private fun sendAppId() {
