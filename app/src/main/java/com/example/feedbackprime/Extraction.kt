@@ -12,7 +12,7 @@ import com.example.feedbackprime.databinding.ActivityExtractionBinding
 import org.json.JSONObject
 
 class Extraction : AppCompatActivity() {
-//    private val url = intent.extras?.getString("url")
+    //    private val url = intent.extras?.getString("url")
     private var accessToken: String = ""
     lateinit var binding: ActivityExtractionBinding
 
@@ -24,13 +24,13 @@ class Extraction : AppCompatActivity() {
         setContentView(binding.root)
 
         val url = intent.extras?.getString("url")
-        val name=intent.extras?.getString("name")
+        val name = intent.extras?.getString("name")
 
         sendAppId()
-        val intent= Intent(this,VideoProcess::class.java)
-        intent.putExtra("url",url)
-        intent.putExtra("name",name)
-        intent.putExtra("token",accessToken)
+        val intent = Intent(this, VideoProcess::class.java)
+        intent.putExtra("url", url)
+        intent.putExtra("name", name)
+        intent.putExtra("token", accessToken)
 //        startActivity(intent)
 
 
@@ -53,8 +53,8 @@ class Extraction : AppCompatActivity() {
                 Log.i("Extraction", "API called second")
 //                val temp = it.getJSONObject("")
                 accessToken = it.getString("accessToken")
-                Toast.makeText(this,"Work in Progress",Toast.LENGTH_SHORT).show()
-                Log.i("Extraction",accessToken)
+                Toast.makeText(this, "Work in Progress", Toast.LENGTH_SHORT).show()
+                Log.i("Extraction", accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             })

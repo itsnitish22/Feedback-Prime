@@ -15,7 +15,7 @@ class UrlAccept : AppCompatActivity() {
         setContentView(binding.root)
 
         val url = binding.editTextTextPersonName.text.toString()
-        val name=binding.name.text.toString()
+        val name = binding.name.text.toString()
         binding.submitButton.setOnClickListener {
             val intent = Intent(this, Extraction::class.java)
             intent.putExtra("url", url)

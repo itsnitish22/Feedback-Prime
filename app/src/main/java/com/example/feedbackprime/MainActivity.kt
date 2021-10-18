@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val loginButton: Button = findViewById(R.id.login)
-        loginButton.setOnClickListener{
+        loginButton.setOnClickListener {
             onClickLogin()
         }
         val message = intent.getStringExtra(LOGIN_SUCCESS_MESSAGE)
