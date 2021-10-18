@@ -32,8 +32,6 @@ class Extraction : AppCompatActivity() {
         intent.putExtra("name", name)
         intent.putExtra("token", accessToken)
 //        startActivity(intent)
-
-
     }
 
     private fun sendAppId() {
@@ -61,6 +59,5 @@ class Extraction : AppCompatActivity() {
 
         queue.add(req)
 //        MySingleton.getInstance(this).addToRequestQueue(req)
-
     }
 }
