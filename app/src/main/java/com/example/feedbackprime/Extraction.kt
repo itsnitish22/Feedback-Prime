@@ -12,7 +12,6 @@ import com.example.feedbackprime.databinding.ActivityExtractionBinding
 import org.json.JSONObject
 
 class Extraction : AppCompatActivity() {
-    //    private val url = intent.extras?.getString("url")
     private var accessToken: String = ""
     lateinit var binding: ActivityExtractionBinding
 
@@ -31,12 +30,10 @@ class Extraction : AppCompatActivity() {
         intent.putExtra("url", url)
         intent.putExtra("name", name)
         intent.putExtra("token", accessToken)
-//        startActivity(intent)
+        startActivity(intent)
     }
 
     private fun sendAppId() {
-        Log.i("Extraction", "API called")
-
         val parameters = JSONObject()
         parameters.put("type", "application")
         parameters.put("appId", "706f657063505776757476457764344d7434674553644c53747a4d5757795156")
@@ -48,8 +45,6 @@ class Extraction : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
-                Log.i("Extraction", "API called second")
-//                val temp = it.getJSONObject("")
                 accessToken = it.getString("accessToken")
                 Toast.makeText(this, "Work in Progress", Toast.LENGTH_SHORT).show()
                 Log.i("Extraction", accessToken)
@@ -58,6 +53,5 @@ class Extraction : AppCompatActivity() {
             })
 
         queue.add(req)
-//        MySingleton.getInstance(this).addToRequestQueue(req)
     }
 }
