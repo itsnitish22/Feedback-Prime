@@ -46,7 +46,6 @@ class Extraction : AppCompatActivity() {
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
                 accessToken = it.getString("accessToken")
-                Toast.makeText(this, "Work in Progress", Toast.LENGTH_SHORT).show()
                 Log.i("Extraction", accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()

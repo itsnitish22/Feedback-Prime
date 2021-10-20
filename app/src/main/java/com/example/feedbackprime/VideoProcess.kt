@@ -37,13 +37,15 @@ class VideoProcess : AppCompatActivity() {
         val req = object : JsonObjectRequest(Method.POST, url, body,
             {
                 conv = it.getString("conversationId")
+                val text = binding.VPTextView
+                text.text = conv
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
             })
         {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = "Bearer$token"
+                headers["Authorization"] = "Bearer $token"
                 return headers
             }
         }
