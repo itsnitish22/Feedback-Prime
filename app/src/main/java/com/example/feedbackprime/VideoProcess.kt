@@ -45,6 +45,7 @@ class VideoProcess : AppCompatActivity() {
         {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
                 headers["Authorization"] = "Bearer $token"
                 return headers
             }
