@@ -31,7 +31,7 @@ class Extraction : AppCompatActivity() {
         intent.putExtra("url",url)
         intent.putExtra("name",name)
         intent.putExtra("token",accessToken)
-//        startActivity(intent)
+        startActivity(intent)
 
 
     }
@@ -53,7 +53,7 @@ class Extraction : AppCompatActivity() {
                 Log.i("Extraction", "API called second")
 //                val temp = it.getJSONObject("")
                 accessToken = it.getString("accessToken")
-                Toast.makeText(this,"Work in Progress",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Token generated",Toast.LENGTH_SHORT).show()
                 Log.i("Extraction",accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()

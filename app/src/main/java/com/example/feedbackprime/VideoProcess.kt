@@ -23,19 +23,23 @@ class VideoProcess : AppCompatActivity() {
         token=intent.extras?.getString("accesstoken").toString()
         url=intent.extras?.getString("url").toString()
         name=intent.extras?.getString("name").toString()
+        Log.i("VideoProcess","HELLO")
+
         getconvid()
 
     }
     fun getconvid(){
         val body=JSONObject()
         body.put("url",url)
+        Log.i("VideoProcess",url)
         body.put("name",name)
         val queue=Volley.newRequestQueue(this)
-        val req = object:JsonObjectRequest(Request.Method.POST, url, body,
+        val req = object:JsonObjectRequest(Request.Method.POST,"https://api.symbl.ai/v1/process/video/url", body,
             {
+//                Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
                 conv=it.getString("conversationId")
                 Log.i("VideoProcess","Conversation API id extracted")
-                Log.i("Extraction", "API called second")
+                Log.i("VideoProcess", "API called second")
 
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
@@ -43,7 +47,8 @@ class VideoProcess : AppCompatActivity() {
         {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = "Bearer "+ token
+                headers.put("Authorization","Bearer $token")
+                headers.put("Content-Type","application/json")
                 return headers
             }
         }
