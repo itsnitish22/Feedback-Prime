@@ -12,28 +12,27 @@ import com.example.feedbackprime.databinding.ActivityExtractionBinding
 import org.json.JSONObject
 
 class Extraction : AppCompatActivity() {
+    private val newUrl = "https://api.symbl.ai/oauth2/token:generate"
     private var accessToken: String=""
     lateinit var binding: ActivityExtractionBinding
 
-    private val newUrl = "https://api.symbl.ai/oauth2/token:generate"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExtractionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val hello:String=sendAppId()
+        sendAppId()
 
         Log.i("Extraction","logging")
-        Log.d("Extraction",hello)
+//        Log.d("Extraction",hello)
 
-        val intent= Intent(this,UrlAccept::class.java)
-        intent.putExtra("accessToken",accessToken)
-        startActivity(intent)
+
 
     }
 
-    private fun sendAppId():String {
+    private fun sendAppId(){
         Log.i("Extraction", "API called")
 
         val parameters = JSONObject()
@@ -49,13 +48,15 @@ class Extraction : AppCompatActivity() {
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
                 accessToken = it.getString("accessToken")
+                val intent= Intent(this,UrlAccept::class.java)
+                intent.putExtra("accessToken",accessToken)
+                startActivity(intent)
 //
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             })
 
         queue.add(req)
-        return accessToken
 
     }
 }
