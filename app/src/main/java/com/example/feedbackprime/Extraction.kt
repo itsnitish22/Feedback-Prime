@@ -12,7 +12,6 @@ import com.example.feedbackprime.databinding.ActivityExtractionBinding
 import org.json.JSONObject
 
 class Extraction : AppCompatActivity() {
-    private var accessToken: String=""
     private var accessToken: String = ""
     lateinit var binding: ActivityExtractionBinding
 
@@ -23,32 +22,18 @@ class Extraction : AppCompatActivity() {
         binding = ActivityExtractionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val hello:String=sendAppId()
+        val hello: String = sendAppId()
 
-        Log.i("Extraction","logging")
-        Log.d("Extraction",hello)
+        Log.i("Extraction", "logging")
+        Log.d("Extraction", hello)
 
-        val intent= Intent(this,UrlAccept::class.java)
-        intent.putExtra("accessToken",accessToken)
+        val intent = Intent(this, UrlAccept::class.java)
+        intent.putExtra("accessToken", accessToken)
         startActivity(intent)
 
     }
 
-    private fun sendAppId():String {
-        Log.i("Extraction", "API called")
-
-        val url = intent.extras?.getString("url")
-        val name = intent.extras?.getString("name")
-
-        sendAppId()
-        val intent = Intent(this, VideoProcess::class.java)
-        intent.putExtra("url", url)
-        intent.putExtra("name", name)
-        intent.putExtra("token", accessToken)
-        startActivity(intent)
-    }
-
-    private fun sendAppId() {
+    private fun sendAppId(): String {
         val parameters = JSONObject()
         parameters.put("type", "application")
         parameters.put("appId", "706f657063505776757476457764344d7434674553644c53747a4d5757795156")
