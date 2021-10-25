@@ -11,14 +11,11 @@ import com.example.feedbackprime.databinding.ActivityVideoProcessBinding
 import org.json.JSONObject
 
 class VideoProcess : AppCompatActivity() {
-
     lateinit var binding: ActivityVideoProcessBinding
-
     lateinit var token: String
     lateinit var url: String
     lateinit var name: String
     lateinit var conv: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoProcessBinding.inflate(layoutInflater)
@@ -32,26 +29,20 @@ class VideoProcess : AppCompatActivity() {
     }
 
     private fun getConversationId() {
-
-        val text = binding.VPTextView
-
         val body = JSONObject()
-        val endPoint = "https://api.symbl.ai/v1/process/video/url"
-
         body.put("url", url)
         body.put("name", name)
-
         val queue = Volley.newRequestQueue(this)
-        text.text = ""
 
-        val req = object : JsonObjectRequest(
-            Method.GET, endPoint, body,
+        val req = object : JsonObjectRequest(Method.POST, url, body,
             {
                 conv = it.getString("conversationId")
+                val text = binding.VPTextView
                 text.text = conv
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
-            }) {
+            })
+        {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
@@ -59,6 +50,7 @@ class VideoProcess : AppCompatActivity() {
                 return headers
             }
         }
+        req.headers["Authorization"] = token
         queue.add(req)
     }
 }
