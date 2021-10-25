@@ -14,6 +14,7 @@ import org.json.JSONObject
 class Extraction : AppCompatActivity() {
     private val newUrl = "https://api.symbl.ai/oauth2/token:generate"
     private var accessToken: String=""
+    private var accessToken: String = ""
     lateinit var binding: ActivityExtractionBinding
 
 
@@ -35,6 +36,18 @@ class Extraction : AppCompatActivity() {
     private fun sendAppId(){
         Log.i("Extraction", "API called")
 
+        val url = intent.extras?.getString("url")
+        val name = intent.extras?.getString("name")
+
+        sendAppId()
+        val intent = Intent(this, VideoProcess::class.java)
+        intent.putExtra("url", url)
+        intent.putExtra("name", name)
+        intent.putExtra("token", accessToken)
+        startActivity(intent)
+    }
+
+    private fun sendAppId() {
         val parameters = JSONObject()
         parameters.put("type", "application")
         parameters.put("appId", "706f657063505776757476457764344d7434674553644c53747a4d5757795156")
@@ -52,6 +65,7 @@ class Extraction : AppCompatActivity() {
                 intent.putExtra("accessToken",accessToken)
                 startActivity(intent)
 //
+                Log.i("Extraction", accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             })
