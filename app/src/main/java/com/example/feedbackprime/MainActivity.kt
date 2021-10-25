@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             "615de8b2956fa888e2ab633duDIlH0mAzkPfNy0cpddvHt63"  // your api key secret
         ).login(
             "email", // can be one of 'email' or 'phone_number_sms'
-            UrlAccept::class.java.name // Callback class name
+            Extraction::class.java.name // Callback class name
         )
     }
 }

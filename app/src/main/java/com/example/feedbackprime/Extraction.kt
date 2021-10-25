@@ -12,8 +12,7 @@ import com.example.feedbackprime.databinding.ActivityExtractionBinding
 import org.json.JSONObject
 
 class Extraction : AppCompatActivity() {
-//    private val url = intent.extras?.getString("url")
-    private var accessToken: String = ""
+    private var accessToken: String=""
     lateinit var binding: ActivityExtractionBinding
 
     private val newUrl = "https://api.symbl.ai/oauth2/token:generate"
@@ -23,20 +22,18 @@ class Extraction : AppCompatActivity() {
         binding = ActivityExtractionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val url = intent.extras?.getString("url")
-        val name=intent.extras?.getString("name")
+        val hello:String=sendAppId()
 
-        sendAppId()
-        val intent= Intent(this,VideoProcess::class.java)
-        intent.putExtra("url",url)
-        intent.putExtra("name",name)
-        intent.putExtra("token",accessToken)
+        Log.i("Extraction","logging")
+        Log.d("Extraction",hello)
+
+        val intent= Intent(this,UrlAccept::class.java)
+        intent.putExtra("accessToken",accessToken)
         startActivity(intent)
-
 
     }
 
-    private fun sendAppId() {
+    private fun sendAppId():String {
         Log.i("Extraction", "API called")
 
         val parameters = JSONObject()
@@ -46,21 +43,19 @@ class Extraction : AppCompatActivity() {
             "appSecret",
             "39594b715047596d51705a79704879786e526e52344a613676794659766142633859596e4c597975706263684c73483577684b67334a44313348784668436f57"
         )
+        Log.i("Extraction", "API called second")
 
         val queue = Volley.newRequestQueue(this)
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
-                Log.i("Extraction", "API called second")
-//                val temp = it.getJSONObject("")
                 accessToken = it.getString("accessToken")
-                Toast.makeText(this,"Token generated",Toast.LENGTH_SHORT).show()
-                Log.i("Extraction",accessToken)
+//
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             })
 
         queue.add(req)
-//        MySingleton.getInstance(this).addToRequestQueue(req)
+        return accessToken
 
     }
 }

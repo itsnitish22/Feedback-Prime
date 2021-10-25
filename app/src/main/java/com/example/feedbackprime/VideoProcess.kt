@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.android.volley.Request
+import com.android.volley.Request.*
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.feedbackprime.databinding.ActivityVideoProcessBinding
@@ -16,14 +17,17 @@ class VideoProcess : AppCompatActivity() {
     lateinit var url:String
     lateinit var name:String
     lateinit var conv:String
+    private val requrl="https://api.symbl.ai/v1/process/video/url"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityVideoProcessBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        token=intent.extras?.getString("accesstoken").toString()
+        Log.i("VideoProcess","HELLO")
+        token=intent.extras?.getString("accessToken").toString()
         url=intent.extras?.getString("url").toString()
         name=intent.extras?.getString("name").toString()
         Log.i("VideoProcess","HELLO")
+        Log.i("VideoProcess",name)
 
         getconvid()
 
@@ -34,7 +38,8 @@ class VideoProcess : AppCompatActivity() {
         Log.i("VideoProcess",url)
         body.put("name",name)
         val queue=Volley.newRequestQueue(this)
-        val req = object:JsonObjectRequest(Request.Method.POST,"https://api.symbl.ai/v1/process/video/url", body,
+        val req = object:JsonObjectRequest(
+            Method.POST,requrl, body,
             {
 //                Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
                 conv=it.getString("conversationId")
