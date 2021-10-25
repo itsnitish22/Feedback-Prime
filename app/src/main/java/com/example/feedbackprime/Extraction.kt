@@ -13,9 +13,8 @@ import org.json.JSONObject
 
 class Extraction : AppCompatActivity() {
     private val newUrl = "https://api.symbl.ai/oauth2/token:generate"
-    private var accessToken: String=""
+    private var accessToken: String = ""
     lateinit var binding: ActivityExtractionBinding
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +24,14 @@ class Extraction : AppCompatActivity() {
 
         sendAppId()
 
-        Log.i("Extraction","logging")
+        Log.i("Extraction", "logging")
 //        Log.d("Extraction",hello)
 
 
     }
 
-    private fun sendAppId(): String {
+
+    private fun sendAppId() {
         val parameters = JSONObject()
         parameters.put("type", "application")
         parameters.put("appId", "706f657063505776757476457764344d7434674553644c53747a4d5757795156")
@@ -45,8 +45,8 @@ class Extraction : AppCompatActivity() {
         val req = JsonObjectRequest(Request.Method.POST, newUrl, parameters,
             {
                 accessToken = it.getString("accessToken")
-                val intent= Intent(this,UrlAccept::class.java)
-                intent.putExtra("accessToken",accessToken)
+                val intent = Intent(this, UrlAccept::class.java)
+                intent.putExtra("accessToken", accessToken)
                 startActivity(intent)
 //
                 Log.i("Extraction", accessToken)

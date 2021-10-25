@@ -18,10 +18,7 @@ class UrlAccept : AppCompatActivity() {
         setContentView(binding.root)
         token= intent.extras?.getString("accessToken").toString()
 
-
-
         Log.i("UrlAccept",token)
-
 
         binding.submitButton.setOnClickListener {
             url = binding.editTextTextPersonName.text.toString()
@@ -36,6 +33,5 @@ class UrlAccept : AppCompatActivity() {
         }
 
     }
-
 
 }

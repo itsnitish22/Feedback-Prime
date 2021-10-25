@@ -49,7 +49,7 @@ class VideoProcess : AppCompatActivity() {
             {
 //                Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
                 conv = it.getString("conversationId")
-                Log.i("VideoProcess",conv)
+                Log.i("VideoProcess", conv)
                 Log.i("VideoProcess", "Conversation API id extracted")
                 Log.i("VideoProcess", "API called second")
 
