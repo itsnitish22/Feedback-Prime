@@ -18,9 +18,13 @@ class VideoProcess : AppCompatActivity() {
     lateinit var name:String
     lateinit var conv:String
     private val requrl="https://api.symbl.ai/v1/process/video/url"
+    lateinit var token: String
+    lateinit var url: String
+    lateinit var name: String
+    lateinit var conv: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityVideoProcessBinding.inflate(layoutInflater)
+        binding = ActivityVideoProcessBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.i("VideoProcess","HELLO")
         token=intent.extras?.getString("accessToken").toString()
@@ -30,7 +34,11 @@ class VideoProcess : AppCompatActivity() {
         Log.i("VideoProcess",name)
 
         getconvid()
+        token = intent.extras?.getString("token").toString()
+        url = intent.extras?.getString("url").toString()
+        name = intent.extras?.getString("name").toString()
 
+        getConversationId()
     }
     fun getconvid(){
         val body=JSONObject()
@@ -46,6 +54,17 @@ class VideoProcess : AppCompatActivity() {
                 Log.i("VideoProcess","Conversation API id extracted")
                 Log.i("VideoProcess", "API called second")
 
+    private fun getConversationId() {
+        val body = JSONObject()
+        body.put("url", url)
+        body.put("name", name)
+        val queue = Volley.newRequestQueue(this)
+
+        val req = object : JsonObjectRequest(Method.POST, url, body,
+            {
+                conv = it.getString("conversationId")
+                val text = binding.VPTextView
+                text.text = conv
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
             })
@@ -54,11 +73,12 @@ class VideoProcess : AppCompatActivity() {
                 val headers = HashMap<String, String>()
                 headers.put("Authorization","Bearer $token")
                 headers.put("Content-Type","application/json")
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer $token"
                 return headers
             }
         }
-//        req.headers.set("Authorization",token)
+        req.headers["Authorization"] = token
         queue.add(req)
     }
-
 }

@@ -17,11 +17,11 @@ class UrlAccept : AppCompatActivity() {
         binding = ActivityUrlAcceptBinding.inflate(layoutInflater)
         setContentView(binding.root)
         token= intent.extras?.getString("accessToken").toString()
-
-
         url = binding.editTextTextPersonName.text.toString()
         Log.i("UrlAccept",token)
         val name=binding.name.text.toString()
+        val url = binding.editTextTextPersonName.text.toString()
+        val name = binding.name.text.toString()
         binding.submitButton.setOnClickListener {
             val intent = Intent(this, VideoProcess::class.java)
             intent.putExtra("url", url)
