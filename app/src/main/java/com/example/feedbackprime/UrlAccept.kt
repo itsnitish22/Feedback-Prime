@@ -3,7 +3,6 @@ package com.example.feedbackprime
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.feedbackprime.databinding.ActivityUrlAcceptBinding
 
 class UrlAccept : AppCompatActivity() {
@@ -18,15 +17,12 @@ class UrlAccept : AppCompatActivity() {
 
         binding.submitButton.setOnClickListener {
             url = binding.editTextTextPersonName.text.toString()
-//            Log.i("UrlAccept",url)
             val name = binding.name.text.toString()
-//            Log.i("UrlAccept",name)
             val intent = Intent(this, VideoProcess::class.java)
+
             intent.putExtra("url", url)
             intent.putExtra("name", name)
             startActivity(intent)
         }
-
     }
-
 }
