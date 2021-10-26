@@ -17,7 +17,6 @@ class UrlAccept : AppCompatActivity() {
         binding = ActivityUrlAcceptBinding.inflate(layoutInflater)
         setContentView(binding.root)
         token= intent.extras?.getString("accessToken").toString()
-
         Log.i("UrlAccept",token)
 
         binding.submitButton.setOnClickListener {

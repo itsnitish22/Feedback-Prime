@@ -48,7 +48,6 @@ class Extraction : AppCompatActivity() {
                 val intent = Intent(this, UrlAccept::class.java)
                 intent.putExtra("accessToken", accessToken)
                 startActivity(intent)
-//
                 Log.i("Extraction", accessToken)
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
