@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -21,7 +24,7 @@ class VideoProcess : AppCompatActivity() {
     lateinit var jobId: String
     lateinit var sentimentAnalysisUrl: String
 
-    private val convIdUrl = "https://api.symbl.ai/v1/process/video/url"
+    private val convIdUrl = "https://api.symbl.ai/v1/process/video/url?enableSpeakerDiarization=true&diarizationSpeakerCount=2"
     private val tokenGenerateUrl = "https://api.symbl.ai/oauth2/token:generate"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +66,7 @@ class VideoProcess : AppCompatActivity() {
         body.put("url", url)
         body.put("name", name)
 
-        Log.i("VideoProcess", url)
+//        Log.i("VideoProcess", url)
 
         val queue = Volley.newRequestQueue(this)
         val req = object : JsonObjectRequest(
@@ -76,8 +79,6 @@ class VideoProcess : AppCompatActivity() {
 
                 Log.i("VideoProcess", conv)
                 Log.i("VideoProcess", jobId)
-                Log.i("VideoProcess", "Conversation API id extracted")
-                Log.i("VideoProcess", "API called second")
 
                 sentimentAnalysisUrl =
                     "https://api.symbl.ai/v1/conversations/$conv/messages?sentiment=true"
@@ -94,6 +95,13 @@ class VideoProcess : AppCompatActivity() {
                 headers.put("Content-Type", "application/json")
                 return headers
             }
+
+//            override fun getParams(): MutableMap<String, String> {
+//                val params=HashMap<String,String>()
+//                params.put("enableSpeakerDiarization","true")
+//                params.put("diarizationSpeakerCount","2")
+//                return params
+//            }
         }
         queue.add(req)
     }
@@ -110,7 +118,7 @@ class VideoProcess : AppCompatActivity() {
                     val handler = Handler(Looper.getMainLooper())
                     Handler().postDelayed({
                         getStatus(jobid, sentiment)
-                    }, 5000)
+                    }, 500)
                 }
             }, {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
@@ -129,8 +137,9 @@ class VideoProcess : AppCompatActivity() {
         val req = object : JsonObjectRequest(
             Method.GET, sentimentUrl, null,
             {
-                Log.i("VideoProcess", "I am running")
+                Log.i("VideoProcess", "Response generated")
                 Log.i("VideoProcess", it.toString())
+                showResult(it)
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
             }) {
@@ -142,4 +151,50 @@ class VideoProcess : AppCompatActivity() {
         }
         queue.add(req)
     }
-}
+
+    fun showResult(response: JSONObject) {
+        Log.i("response", response.toString())
+        // getting the recyclerview by its id
+        val recyclerview=binding.recyclerview
+//        // this creates a vertical layout Manager
+        recyclerview.layoutManager=LinearLayoutManager(this)
+//        // ArrayList of class ItemsViewModel
+        val data = ArrayList<ItemsViewModel>()
+        val dataArray=response.getJSONArray("messages")
+        Log.i("Array",dataArray.toString())
+        var scoreavg:Double=0.0
+        Log.i("Length",dataArray.length().toString())
+//
+        for(i in 0 until dataArray.length())
+        {
+//            Log.i("Index",i.toString())
+               val obj=dataArray.getJSONObject(i)
+            val text=obj.getString("text")
+            Log.i("Text",text.toString())
+            val speaker=obj.getJSONObject("from").getString("name")
+            Log.i("Text",speaker.toString())
+            val score=obj.getJSONObject("sentiment").getJSONObject("polarity").getString("score").toDouble()
+            var icon=R.drawable.sad
+            scoreavg+=score
+            if(score>-0.3 && score<=-1.0)
+                icon=R.drawable.sad
+            else if(score>=-0.3 && score<=0.3)
+                icon=R.drawable.neutral
+            else if(score>0.3 && score<=1.0)
+                icon=R.drawable.happy
+            data.add(ItemsViewModel(text,speaker,icon))
+
+        }
+        scoreavg/=dataArray.length()
+        // This will pass the ArrayList to our Adapter
+        val adapter=CustomAdapter(data)
+
+        // Setting the Adapter with the recyclerview
+        recyclerview.adapter = adapter
+
+        binding.averageview.text="The average sentiment score is:"+scoreavg.toString()
+        }
+//
+
+//    }
+    }
