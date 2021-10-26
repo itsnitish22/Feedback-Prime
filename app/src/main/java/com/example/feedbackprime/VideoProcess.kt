@@ -78,7 +78,7 @@ class VideoProcess : AppCompatActivity() {
                     "https://api.symbl.ai/v1/conversations/$conv/messages?sentiment=true"
                 Log.i("VideoProcess", SentimentAnalysisUrl)
 
-                /*
+//                /*
                 //checking the duration of the video
                 val uri = Uri.parse(url)
                 var durationTime: Long
@@ -94,9 +94,9 @@ class VideoProcess : AppCompatActivity() {
                 val handler = Handler(Looper.getMainLooper())
                 Handler().postDelayed({
                     getresponse(SentimentAnalysisUrl)
-                }, durationTime*1000/3)
+                }, durationTime * 1000 / 3)
 
-                 */
+//                 */
 
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
