@@ -1,17 +1,25 @@
 package com.example.feedbackprime
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.feedbackprime.databinding.ActivityVideoProcessBinding
 import org.json.JSONObject
 
@@ -107,12 +115,40 @@ class VideoProcess : AppCompatActivity() {
     }
 
     fun getStatus(jobid: String, sentiment: String) {
+
+        val progressBar: ProgressBar = findViewById(R.id.progressBar)
+        progressBar.visibility = View.VISIBLE
+
         val endPt = "https://api.symbl.ai/v1/job/$jobid"
         val queue = Volley.newRequestQueue(this)
         val request = object : JsonObjectRequest(
             Method.GET, endPt, null, {
                 val status = it.getString("status")
+
+//                Glide.with(this).load(status).listener(object : RequestListener<Drawable> {
+//                    override fun onLoadFailed(
+//                        e: GlideException?,
+//                        model: Any?,
+//                        target: Target<Drawable>?,
+//                        isFirstResource: Boolean
+//                    ): Boolean {
+//                        progressBar.visibility = View.GONE
+//                        return false
+//                    }
+//                    override fun onResourceReady(
+//                        resource: Drawable?,
+//                        model: Any?,
+//                        target: Target<Drawable>?,
+//                        dataSource: DataSource?,
+//                        isFirstResource: Boolean
+//                    ): Boolean {
+//                        progressBar.visibility = View.GONE
+//                        return false
+//                    }
+//                }).into(recyclerview)
+
                 if (status == "completed") {
+                    progressBar.visibility = View.GONE
                     getResponse(sentiment)
                 } else {
                     val handler = Handler(Looper.getMainLooper())
@@ -192,7 +228,7 @@ class VideoProcess : AppCompatActivity() {
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
 
-        binding.averageview.text="The average sentiment score is:"+scoreavg.toString()
+//        binding.averageview.text="The average sentiment score is:"+scoreavg.toString()
         }
 //
 
