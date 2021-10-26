@@ -2,12 +2,16 @@ package com.example.feedbackprime
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import com.android.volley.Request
+import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.feedbackprime.databinding.ActivityVideoProcessBinding
+import org.json.JSONArray
 import org.json.JSONObject
 
 class VideoProcess : AppCompatActivity() {
@@ -32,7 +36,7 @@ class VideoProcess : AppCompatActivity() {
 
 
     }
-
+//    val queue = Volley.newRequestQueue(this)
     private fun sendAppId() {
         val parameters = JSONObject()
         parameters.put("type", "application")
@@ -69,8 +73,14 @@ class VideoProcess : AppCompatActivity() {
                 Log.i("VideoProcess", conv)
                 Log.i("VideoProcess", "Conversation API id extracted")
                 Log.i("VideoProcess", "API called second")
-                val SentimentAnalysisUrl = "https://api.symbl.ai/v1/conversations/$conv/messages"
-                getresponse(SentimentAnalysisUrl)
+                val SentimentAnalysisUrl = "https://api.symbl.ai/v1/conversations/$conv/messages?sentiment=true"
+                Log.i("VideoProcess",SentimentAnalysisUrl)
+                val handler = Handler(Looper.getMainLooper())
+                Handler().postDelayed({
+                    //doSomethingHere()
+                                      getresponse(SentimentAnalysisUrl)
+                }, 20000)
+
 
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
@@ -91,11 +101,11 @@ class VideoProcess : AppCompatActivity() {
             Method.GET, sentimenturl, null,
             {
                 Log.i("VideoProcess", "I am running")
-                val idf=it.getJSONArray("messages")
-                val temp=idf.getJSONObject(1)
-
-                val temp2=temp.getString("text").toString()
-                Log.i("VideoProcess",temp2)
+//                val idf:JSONArray=it.getJSONArray("messages")
+//                val temp:JSONObject=idf.getJSONObject(0)
+//
+//                val temp2=temp.getString("text").toString()
+                Log.i("VideoProcess",it.toString())
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
             }) {
@@ -106,11 +116,11 @@ class VideoProcess : AppCompatActivity() {
             }
 
 
-            override fun getParams(): MutableMap<String, String> {
-                val param = HashMap<String, String>()
-                param.put("sentiment", "true")
-                return param
-            }
+//            override fun getParams(): MutableMap<String, String> {
+//                val param = HashMap<String, String>()
+//                param.put("sentiment", "true")
+//                return param
+//            }
         }
         queue.add(req)
 
