@@ -36,7 +36,8 @@ class VideoProcess : AppCompatActivity() {
 
 
     }
-//    val queue = Volley.newRequestQueue(this)
+
+    //    val queue = Volley.newRequestQueue(this)
     private fun sendAppId() {
         val parameters = JSONObject()
         parameters.put("type", "application")
@@ -73,12 +74,12 @@ class VideoProcess : AppCompatActivity() {
                 Log.i("VideoProcess", conv)
                 Log.i("VideoProcess", "Conversation API id extracted")
                 Log.i("VideoProcess", "API called second")
-                val SentimentAnalysisUrl = "https://api.symbl.ai/v1/conversations/$conv/messages?sentiment=true"
-                Log.i("VideoProcess",SentimentAnalysisUrl)
+                val SentimentAnalysisUrl =
+                    "https://api.symbl.ai/v1/conversations/$conv/messages?sentiment=true"
+                Log.i("VideoProcess", SentimentAnalysisUrl)
                 val handler = Handler(Looper.getMainLooper())
                 Handler().postDelayed({
-                    //doSomethingHere()
-                                      getresponse(SentimentAnalysisUrl)
+                    getresponse(SentimentAnalysisUrl)
                 }, 20000)
 
 
@@ -105,7 +106,7 @@ class VideoProcess : AppCompatActivity() {
 //                val temp:JSONObject=idf.getJSONObject(0)
 //
 //                val temp2=temp.getString("text").toString()
-                Log.i("VideoProcess",it.toString())
+                Log.i("VideoProcess", it.toString())
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
             }) {

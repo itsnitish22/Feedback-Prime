@@ -9,7 +9,7 @@ import com.example.feedbackprime.databinding.ActivityUrlAcceptBinding
 class UrlAccept : AppCompatActivity() {
 
     private lateinit var binding: ActivityUrlAcceptBinding
-    private lateinit var url:String
+    private lateinit var url: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,11 +19,11 @@ class UrlAccept : AppCompatActivity() {
         binding.submitButton.setOnClickListener {
             url = binding.editTextTextPersonName.text.toString()
 //            Log.i("UrlAccept",url)
-            val name=binding.name.text.toString()
+            val name = binding.name.text.toString()
 //            Log.i("UrlAccept",name)
             val intent = Intent(this, VideoProcess::class.java)
             intent.putExtra("url", url)
-            intent.putExtra("name",name)
+            intent.putExtra("name", name)
             startActivity(intent)
         }
 
