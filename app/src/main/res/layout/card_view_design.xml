@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:padding="2dp">
 
         <TextView
@@ -25,17 +25,18 @@
 
         <TextView
             android:id="@+id/conversation"
-            android:layout_width="wrap_content"
+            android:layout_width="334dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/speaker"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="5dp"
             android:layout_toLeftOf="@+id/feedbackIcon"
             android:padding="5dp"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             tools:text="Nitish" />
 
