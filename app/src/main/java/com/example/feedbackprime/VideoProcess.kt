@@ -1,5 +1,7 @@
 package com.example.feedbackprime
 
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -70,6 +72,7 @@ class VideoProcess : AppCompatActivity() {
         val req = object : JsonObjectRequest(
             Method.POST, ConvIdUrl, body,
             {
+                //getting the conversation id
                 conv = it.getString("conversationId")
                 Log.i("VideoProcess", conv)
                 Log.i("VideoProcess", "Conversation API id extracted")
@@ -77,11 +80,24 @@ class VideoProcess : AppCompatActivity() {
                 val SentimentAnalysisUrl =
                     "https://api.symbl.ai/v1/conversations/$conv/messages?sentiment=true"
                 Log.i("VideoProcess", SentimentAnalysisUrl)
+
+
+                //checking the duration of the video
+                val uri = Uri.parse(url)
+                var durationTime: Long
+                MediaPlayer.create(this, uri).also {
+                    durationTime = (it.duration / 1000).toLong()
+                    it.reset()
+                    it.release()
+                }
+
+                Log.i("timetest", durationTime.toString())
+
+                //adding some delay to execute the GET request
                 val handler = Handler(Looper.getMainLooper())
                 Handler().postDelayed({
                     getresponse(SentimentAnalysisUrl)
-                }, 20000)
-
+                }, durationTime*1000/3)
 
             }, {
                 Toast.makeText(this, "Error in video", Toast.LENGTH_SHORT).show()
