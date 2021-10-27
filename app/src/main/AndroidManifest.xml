@@ -14,9 +14,6 @@
         android:theme="@style/Theme.FeedbackPrime"
         tools:replace="android:allowBackup,android:theme" >
         <activity
-            android:name=".Graph"
-            android:exported="false" />
-        <activity
             android:name=".VideoProcess"
             android:exported="false" />
         <activity
@@ -27,7 +24,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
