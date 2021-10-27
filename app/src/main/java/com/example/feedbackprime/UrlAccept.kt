@@ -22,7 +22,6 @@ class UrlAccept : AppCompatActivity() {
             val name = binding.nameEditText.text.toString()
 
             if (TextUtils.isEmpty(url)) {
-//                    Toast.makeText(this, "URL and Name can't be empty", Toast.LENGTH_LONG).show()
                 binding.mediaUrlEditText.error = "URL can't be empty"
             } else if (TextUtils.isEmpty(name)) {
                 binding.nameEditText.error = "Name can't be empty"
