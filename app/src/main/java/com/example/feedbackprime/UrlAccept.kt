@@ -16,8 +16,8 @@ class UrlAccept : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.submitButton.setOnClickListener {
-            url = binding.editTextTextPersonName.text.toString()
-            val name = binding.name.text.toString()
+            url = binding.editTextTextPersonNameEditText.text.toString()
+            val name = binding.nameEditText.text.toString()
             val intent = Intent(this, VideoProcess::class.java)
 
             intent.putExtra("url", url)
