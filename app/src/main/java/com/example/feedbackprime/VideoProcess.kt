@@ -32,7 +32,8 @@ class VideoProcess : AppCompatActivity() {
     lateinit var jobId: String
     lateinit var sentimentAnalysisUrl: String
 
-    private val convIdUrl = "https://api.symbl.ai/v1/process/video/url?enableSpeakerDiarization=true&diarizationSpeakerCount=2"
+    private val convIdUrl =
+        "https://api.symbl.ai/v1/process/video/url?enableSpeakerDiarization=true&diarizationSpeakerCount=2"
     private val tokenGenerateUrl = "https://api.symbl.ai/oauth2/token:generate"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,13 +104,6 @@ class VideoProcess : AppCompatActivity() {
                 headers.put("Content-Type", "application/json")
                 return headers
             }
-
-//            override fun getParams(): MutableMap<String, String> {
-//                val params=HashMap<String,String>()
-//                params.put("enableSpeakerDiarization","true")
-//                params.put("diarizationSpeakerCount","2")
-//                return params
-//            }
         }
         queue.add(req)
     }
@@ -124,29 +118,6 @@ class VideoProcess : AppCompatActivity() {
         val request = object : JsonObjectRequest(
             Method.GET, endPt, null, {
                 val status = it.getString("status")
-
-//                Glide.with(this).load(status).listener(object : RequestListener<Drawable> {
-//                    override fun onLoadFailed(
-//                        e: GlideException?,
-//                        model: Any?,
-//                        target: Target<Drawable>?,
-//                        isFirstResource: Boolean
-//                    ): Boolean {
-//                        progressBar.visibility = View.GONE
-//                        return false
-//                    }
-//                    override fun onResourceReady(
-//                        resource: Drawable?,
-//                        model: Any?,
-//                        target: Target<Drawable>?,
-//                        dataSource: DataSource?,
-//                        isFirstResource: Boolean
-//                    ): Boolean {
-//                        progressBar.visibility = View.GONE
-//                        return false
-//                    }
-//                }).into(recyclerview)
-
                 if (status == "completed") {
                     progressBar.visibility = View.GONE
                     getResponse(sentiment)
@@ -191,46 +162,41 @@ class VideoProcess : AppCompatActivity() {
     fun showResult(response: JSONObject) {
         Log.i("response", response.toString())
         // getting the recyclerview by its id
-        val recyclerview=binding.recyclerview
+        val recyclerview = binding.recyclerview
 //        // this creates a vertical layout Manager
-        recyclerview.layoutManager=LinearLayoutManager(this)
+        recyclerview.layoutManager = LinearLayoutManager(this)
 //        // ArrayList of class ItemsViewModel
         val data = ArrayList<ItemsViewModel>()
-        val dataArray=response.getJSONArray("messages")
-        Log.i("Array",dataArray.toString())
-        var scoreavg:Double=0.0
-        Log.i("Length",dataArray.length().toString())
+        val dataArray = response.getJSONArray("messages")
+        Log.i("Array", dataArray.toString())
+        var scoreavg: Double = 0.0
+        Log.i("Length", dataArray.length().toString())
 //
-        for(i in 0 until dataArray.length())
-        {
+        for (i in 0 until dataArray.length()) {
 //            Log.i("Index",i.toString())
-               val obj=dataArray.getJSONObject(i)
-            val text=obj.getString("text")
-            Log.i("Text",text.toString())
-            val speaker=obj.getJSONObject("from").getString("name")
-            Log.i("Text",speaker.toString())
-            val score=obj.getJSONObject("sentiment").getJSONObject("polarity").getString("score").toDouble()
-            var icon=R.drawable.sad
-            scoreavg+=score
-            if(score>-0.3 && score<=-1.0)
-                icon=R.drawable.sad
-            else if(score>=-0.3 && score<=0.3)
-                icon=R.drawable.neutral
-            else if(score>0.3 && score<=1.0)
-                icon=R.drawable.happy
-            data.add(ItemsViewModel(text,speaker,icon))
+            val obj = dataArray.getJSONObject(i)
+            val text = obj.getString("text")
+            Log.i("Text", text.toString())
+            val speaker = obj.getJSONObject("from").getString("name")
+            Log.i("Text", speaker.toString())
+            val score = obj.getJSONObject("sentiment").getJSONObject("polarity").getString("score")
+                .toDouble()
+            var icon = R.drawable.sad
+            scoreavg += score
+            if (score > -0.3 && score <= -1.0)
+                icon = R.drawable.sad
+            else if (score >= -0.3 && score <= 0.3)
+                icon = R.drawable.neutral
+            else if (score > 0.3 && score <= 1.0)
+                icon = R.drawable.happy
+            data.add(ItemsViewModel(text, speaker, icon))
 
         }
-        scoreavg/=dataArray.length()
+        scoreavg /= dataArray.length()
         // This will pass the ArrayList to our Adapter
-        val adapter=CustomAdapter(data)
+        val adapter = CustomAdapter(data)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
-
-//        binding.averageview.text="The average sentiment score is:"+scoreavg.toString()
-        }
-//
-
-//    }
     }
+}
