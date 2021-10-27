@@ -25,9 +25,9 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) :
 
         val ItemsViewModel = mList[position]
 // sets the text to the textview from our itemHolder class
-        holder.conversation.text= ItemsViewModel.convo
+        holder.conversation.text = ItemsViewModel.convo
         // sets the text to the textview from our itemHolder class
-        holder.speaker.text= ItemsViewModel.speak
+        holder.speaker.text = ItemsViewModel.speak
         // sets the image to the imageview from our itemHolder class
         holder.feedbackIcon.setImageResource(ItemsViewModel.image)
 

@@ -3,6 +3,7 @@ package com.example.feedbackprime
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.sawolabs.androidsdk.Sawo
 import com.sawolabs.androidsdk.LOGIN_SUCCESS_MESSAGE
 
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity() {
             onClickLogin()
         }
         val message = intent.getStringExtra(LOGIN_SUCCESS_MESSAGE)
-
     }
 
     private fun onClickLogin() {
