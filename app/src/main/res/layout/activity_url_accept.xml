@@ -14,7 +14,7 @@
         android:importantForAccessibility="no"
         android:rotation="125"
         app:layout_constraintBottom_toBottomOf="@id/mediaUrl"
-        app:layout_constraintEnd_toStartOf="@+id/mediaUrl"
+        app:layout_constraintEnd_toStartOf="@id/mediaUrl"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/mediaUrl"
