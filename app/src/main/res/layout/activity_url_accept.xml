@@ -13,57 +13,38 @@
         android:layout_marginStart="30dp"
         android:importantForAccessibility="no"
         android:rotation="125"
-        app:layout_constraintBottom_toBottomOf="@id/editTextTextPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toBottomOf="@id/mediaUrl"
+        app:layout_constraintEnd_toStartOf="@+id/mediaUrl"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/editTextTextPersonName"
+        app:layout_constraintTop_toTopOf="@id/mediaUrl"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_link2" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/editTextTextPersonName"-->
-<!--        style="@android:style/Widget.Material.EditText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:fontFamily="@font/officinasansstdbold"-->
-<!--        android:hint="Media URL"-->
-<!--        android:inputType="textUri"-->
-<!--        android:minHeight="48dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.621"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.325">-->
-
-<!--    </EditText>-->
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextTextPersonName"
-        app:endIconMode="clear_text"
-        app:boxStrokeColor="#61bcfe"
-        app:boxStrokeWidthFocused="3dp"
-        app:boxStrokeWidth="3dp"
-        app:hintTextColor="#61bcfe"
+        android:id="@+id/mediaUrl"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:hint="Media URL"
+        app:boxStrokeColor="#61bcfe"
+        app:boxStrokeWidth="3dp"
+        app:boxStrokeWidthFocused="3dp"
+        app:endIconMode="clear_text"
+        app:hintTextColor="#61bcfe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintVertical_bias="0.325">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextTextPersonName_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textUri" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mediaUrlEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -80,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/mediaUrl"
         app:layout_constraintVertical_bias="0.264" />
 
     <ImageView
@@ -97,43 +78,28 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_text2" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:fontFamily="@font/officinasansstdbold"-->
-<!--        android:hint="Name of video"-->
-<!--        android:inputType="textPersonName"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/submitButton"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.621"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />-->
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:hint="Name of video"
         app:boxStrokeColor="#61bcfe"
         app:boxStrokeWidth="3dp"
-        app:endIconMode="clear_text"
         app:boxStrokeWidthFocused="3dp"
-        android:layout_marginStart="16dp"
+        app:endIconMode="clear_text"
         app:hintTextColor="#61bcfe"
-        android:hint="Name of video"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+        app:layout_constraintTop_toBottomOf="@+id/mediaUrl">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/name_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

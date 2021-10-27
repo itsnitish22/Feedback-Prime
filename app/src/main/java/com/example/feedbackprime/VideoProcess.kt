@@ -74,9 +74,6 @@ class VideoProcess : AppCompatActivity() {
         val body = JSONObject()
         body.put("url", url)
         body.put("name", name)
-
-//        Log.i("VideoProcess", url)
-
         val queue = Volley.newRequestQueue(this)
         val req = object : JsonObjectRequest(
             Method.POST, convIdUrl, body,
@@ -112,6 +109,9 @@ class VideoProcess : AppCompatActivity() {
 
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
+
+        Toast.makeText(this, "Please wait while the video is being analysed", Toast.LENGTH_LONG)
+            .show()
 
         val endPt = "https://api.symbl.ai/v1/job/$jobid"
         val queue = Volley.newRequestQueue(this)

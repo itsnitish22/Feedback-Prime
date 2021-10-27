@@ -3,6 +3,8 @@ package com.example.feedbackprime
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.widget.Toast
 import com.example.feedbackprime.databinding.ActivityUrlAcceptBinding
 
 class UrlAccept : AppCompatActivity() {
@@ -16,13 +18,20 @@ class UrlAccept : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.submitButton.setOnClickListener {
-            url = binding.editTextTextPersonNameEditText.text.toString()
+            url = binding.mediaUrlEditText.text.toString()
             val name = binding.nameEditText.text.toString()
-            val intent = Intent(this, VideoProcess::class.java)
 
-            intent.putExtra("url", url)
-            intent.putExtra("name", name)
-            startActivity(intent)
+            if (TextUtils.isEmpty(url)) {
+//                    Toast.makeText(this, "URL and Name can't be empty", Toast.LENGTH_LONG).show()
+                binding.mediaUrlEditText.error = "URL can't be empty"
+            } else if (TextUtils.isEmpty(name)) {
+                binding.nameEditText.error = "Name can't be empty"
+            } else {
+                val intent = Intent(this, VideoProcess::class.java)
+                intent.putExtra("url", url)
+                intent.putExtra("name", name)
+                startActivity(intent)
+            }
         }
     }
 }
