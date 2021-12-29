@@ -110,8 +110,8 @@ class VideoProcess : AppCompatActivity() {
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
 
-        Toast.makeText(this, "Please wait while the video is being analysed", Toast.LENGTH_LONG)
-            .show()
+//        Toast.makeText(this, "Please wait while the video is being analysed", Toast.LENGTH_SHORT)
+//            .show()
 
         val endPt = "https://api.symbl.ai/v1/job/$jobid"
         val queue = Volley.newRequestQueue(this)
