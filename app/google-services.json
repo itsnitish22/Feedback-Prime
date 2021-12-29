@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "822399718607",
+    "project_id": "feedback-prime",
+    "storage_bucket": "feedback-prime.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822399718607:android:dea7dfcf6d8768341dd3ba",
+        "android_client_info": {
+          "package_name": "com.example.feedbackprime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822399718607-p4112dhbh4qhv5a791qn3e4vb7htn8d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9PEBXvHWFBUTy2dLun-6WAehmRfZQEoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822399718607-p4112dhbh4qhv5a791qn3e4vb7htn8d8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
