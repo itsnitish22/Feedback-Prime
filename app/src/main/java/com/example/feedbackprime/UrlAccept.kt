@@ -18,9 +18,11 @@ class UrlAccept : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.submitButton.setOnClickListener {
+            Toast.makeText(this, "Submit button pressed", Toast.LENGTH_SHORT).show()
             url = binding.mediaUrlEditText.text.toString()
             val name = binding.nameEditText.text.toString()
 
+            //setting errors
             if (TextUtils.isEmpty(url)) {
                 binding.mediaUrlEditText.error = "URL can't be empty"
             } else if (TextUtils.isEmpty(name)) {

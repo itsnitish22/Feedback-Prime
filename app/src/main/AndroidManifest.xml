@@ -29,9 +29,6 @@
             android:name=".VideoProcess"
             android:exported="false" />
         <activity
-            android:name=".Extraction"
-            android:exported="false" />
-        <activity
             android:name=".UrlAccept"
             android:exported="false" />
         <activity

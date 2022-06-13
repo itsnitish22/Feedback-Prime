@@ -24,16 +24,21 @@ import com.example.feedbackprime.databinding.ActivityVideoProcessBinding
 import org.json.JSONObject
 
 class VideoProcess : AppCompatActivity() {
-    lateinit var binding: ActivityVideoProcessBinding
-    lateinit var accessToken: String
     lateinit var url: String
     lateinit var name: String
+
+    lateinit var binding: ActivityVideoProcessBinding
+
+    lateinit var accessToken: String
     lateinit var conv: String
     lateinit var jobId: String
     lateinit var sentimentAnalysisUrl: String
 
+    //conv. id endpoint
     private val convIdUrl =
         "https://api.symbl.ai/v1/process/video/url?enableSpeakerDiarization=true&diarizationSpeakerCount=2"
+
+    //endpoint for getting token
     private val tokenGenerateUrl = "https://api.symbl.ai/oauth2/token:generate"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +53,8 @@ class VideoProcess : AppCompatActivity() {
 
         sendAppId()
     }
-
+    //url, name, appID, appSecret
+    //POST
     private fun sendAppId() {
         val parameters = JSONObject()
         parameters.put("type", "application")
@@ -62,6 +68,7 @@ class VideoProcess : AppCompatActivity() {
         val req = JsonObjectRequest(Request.Method.POST, tokenGenerateUrl, parameters,
             {
                 accessToken = it.getString("accessToken")
+                Log.i("VideoProcess", accessToken)
                 getConvID()
 
             }, {
@@ -78,7 +85,6 @@ class VideoProcess : AppCompatActivity() {
         val req = object : JsonObjectRequest(
             Method.POST, convIdUrl, body,
             {
-
                 //getting the conversation id
                 conv = it.getString("conversationId")
                 jobId = it.getString("jobId")
@@ -109,9 +115,6 @@ class VideoProcess : AppCompatActivity() {
 
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
-
-//        Toast.makeText(this, "Please wait while the video is being analysed", Toast.LENGTH_SHORT)
-//            .show()
 
         val endPt = "https://api.symbl.ai/v1/job/$jobid"
         val queue = Volley.newRequestQueue(this)
@@ -161,27 +164,33 @@ class VideoProcess : AppCompatActivity() {
 
     fun showResult(response: JSONObject) {
         Log.i("response", response.toString())
-        // getting the recyclerview by its id
+
         val recyclerview = binding.recyclerview
-//        // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
-//        // ArrayList of class ItemsViewModel
+
+//        ArrayList of class ItemsViewModel
         val data = ArrayList<ItemsViewModel>()
+
         val dataArray = response.getJSONArray("messages")
         Log.i("Array", dataArray.toString())
-        var scoreavg: Double = 0.0
+
+        var scoreavg: Double= 0.0
         Log.i("Length", dataArray.length().toString())
-//
+
         for (i in 0 until dataArray.length()) {
-//            Log.i("Index",i.toString())
             val obj = dataArray.getJSONObject(i)
+
             val text = obj.getString("text")
             Log.i("Text", text.toString())
+
             val speaker = obj.getJSONObject("from").getString("name")
             Log.i("Text", speaker.toString())
+
             val score = obj.getJSONObject("sentiment").getJSONObject("polarity").getString("score")
                 .toDouble()
+
             var icon = R.drawable.sad
+
             scoreavg += score
             if (score > -0.3 && score <= -1.0)
                 icon = R.drawable.sad
@@ -193,7 +202,8 @@ class VideoProcess : AppCompatActivity() {
 
         }
         scoreavg /= dataArray.length()
-        // This will pass the ArrayList to our Adapter
+
+        //passing the arraylist to adapter
         val adapter = CustomAdapter(data)
 
         // Setting the Adapter with the recyclerview
