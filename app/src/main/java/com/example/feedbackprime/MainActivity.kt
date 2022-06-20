@@ -1,11 +1,10 @@
 package com.example.feedbackprime
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
-import com.sawolabs.androidsdk.Sawo
+import androidx.appcompat.app.AppCompatActivity
 import com.sawolabs.androidsdk.LOGIN_SUCCESS_MESSAGE
+import com.sawolabs.androidsdk.Sawo
 
 
 class MainActivity : AppCompatActivity() {

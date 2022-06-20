@@ -1,10 +1,10 @@
 package com.example.feedbackprime
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.feedbackprime.databinding.ActivityUrlAcceptBinding
 
 class UrlAccept : AppCompatActivity() {
