@@ -1,25 +1,17 @@
 package com.example.feedbackprime
 
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.example.feedbackprime.databinding.ActivityVideoProcessBinding
 import org.json.JSONObject
 
@@ -53,6 +45,7 @@ class VideoProcess : AppCompatActivity() {
 
         sendAppId()
     }
+
     //url, name, appID, appSecret
     //POST
     private fun sendAppId() {
@@ -174,7 +167,7 @@ class VideoProcess : AppCompatActivity() {
         val dataArray = response.getJSONArray("messages")
         Log.i("Array", dataArray.toString())
 
-        var scoreavg: Double= 0.0
+        var scoreavg: Double = 0.0
         Log.i("Length", dataArray.length().toString())
 
         for (i in 0 until dataArray.length()) {

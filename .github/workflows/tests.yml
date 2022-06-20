@@ -19,8 +19,8 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v2.5.0
         with:
-         distribution: 'temurin'
-         java-version: '11'
+          distribution: 'temurin'
+          java-version: '11'
       - name: Set execution flag for gradlew
         run: chmod +x gradlew
       - name: Unit tests
@@ -31,21 +31,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2.4.0
-    - name: Setup JDK
-      uses: actions/setup-java@v2.5.0
-      with:
-        distribution: 'temurin'
-        java-version: '11'
-    - name: build release 
-      run: bash ./gradlew assembleDebug
-    - name: upload artifact to Firebase App Distribution
-      uses: wzieba/Firebase-Distribution-Github-Action@v1.2.2
-      with:
-        appId: '1:822399718607:android:dea7dfcf6d8768341dd3ba'
-        token: '1//0gMhKE9eX516XCgYIARAAGBASNwF-L9IrMkKn4kwv_xReaikQYJHWO5smvmcIts8LDgF700LkDxQK6z187BIzIC66mAG0DAzy_sE'
-        groups: feedbackprimetester
-        file: app/build/outputs/apk/debug/app-debug.apk
+      - uses: actions/checkout@v2.4.0
+      - name: Setup JDK
+        uses: actions/setup-java@v2.5.0
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: build release
+        run: bash ./gradlew assembleDebug
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.2
+        with:
+          appId: '1:822399718607:android:dea7dfcf6d8768341dd3ba'
+          token: '1//0gMhKE9eX516XCgYIARAAGBASNwF-L9IrMkKn4kwv_xReaikQYJHWO5smvmcIts8LDgF700LkDxQK6z187BIzIC66mAG0DAzy_sE'
+          groups: feedbackprimetester
+          file: app/build/outputs/apk/debug/app-debug.apk
 
   apk:
     name: Generate APK
@@ -59,7 +59,7 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Set execution flag for gradlew
-        run: chmod +x gradlew    
+        run: chmod +x gradlew
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Upload APK
