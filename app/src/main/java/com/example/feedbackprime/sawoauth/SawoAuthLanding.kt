@@ -30,7 +30,7 @@ class SawoAuthLanding : Fragment() {
             "68348a0e-da16-4e57-8f03-4daceb1bce0c\n", // your api key
             "615de8b2956fa888e2ab633duDIlH0mAzkPfNy0cpddvHt63"  // your api key secret
         ).login(
-            "email", // can be one of 'email' or 'phone_number_sms'
+            "phone_number_sms", // can be one of 'email' or 'phone_number_sms'
             ProcessCallActivity::class.java.name // Callback class name
         )
     }
