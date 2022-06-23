@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_2"
+    app:startDestination="@id/inputUrl">
+    <fragment
+        android:id="@+id/inputUrl"
+        android:name="com.example.feedbackprime.callprocess.inputs.InputUrl"
+        android:label="fragment_input_url"
+        tools:layout="@layout/fragment_input_url">
+        <argument
+            android:name="url"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            android:defaultValue="null"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_inputUrl_to_processInfo"
+            app:destination="@id/processInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/processInfo"
+        android:name="com.example.feedbackprime.callprocess.outputs.ProcessInfo"
+        android:label="fragment_process_info"
+        tools:layout="@layout/fragment_process_info">
+        <argument
+            android:name="url"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
+</navigation>

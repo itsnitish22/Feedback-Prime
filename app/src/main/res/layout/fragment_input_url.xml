@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UrlAccept">
+    tools:context=".callprocess.inputs.InputUrl">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
 
     <ImageView
         android:id="@+id/icon_cost_of_service"
@@ -15,54 +29,32 @@
         android:rotation="125"
         app:layout_constraintBottom_toBottomOf="@id/mediaUrl"
         app:layout_constraintEnd_toStartOf="@id/mediaUrl"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/mediaUrl"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_link2" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/mediaUrl"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginRight="15dp"
         android:hint="Media URL"
         app:boxStrokeColor="#61bcfe"
         app:boxStrokeWidth="3dp"
         app:boxStrokeWidthFocused="3dp"
         app:endIconMode="clear_text"
         app:hintTextColor="#61bcfe"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.325">
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="@id/guideline1">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/mediaUrlEditText"
+            android:id="@+id/inputMediaUrlEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textUri" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:backgroundTint="#2d2d2d"
-        android:fontFamily="@font/officinasansstdbold"
-        android:text="Submit"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:cornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mediaUrl"
-        app:layout_constraintVertical_bias="0.264" />
 
     <ImageView
         android:id="@+id/icon_service_question"
@@ -70,36 +62,51 @@
         android:layout_height="30dp"
         android:layout_marginStart="30dp"
         android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="@id/name"
-        app:layout_constraintEnd_toStartOf="@+id/name"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintBottom_toBottomOf="@id/nameOfVideo"
+        app:layout_constraintEnd_toStartOf="@id/nameOfVideo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/name"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="@id/nameOfVideo"
         app:srcCompat="@drawable/ic_text2" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name"
+        android:id="@+id/nameOfVideo"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="15dp"
         android:hint="Name of video"
         app:boxStrokeColor="#61bcfe"
         app:boxStrokeWidth="3dp"
         app:boxStrokeWidthFocused="3dp"
         app:endIconMode="clear_text"
         app:hintTextColor="#61bcfe"
-        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mediaUrl">
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/mediaUrl">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_edit_text"
+            android:id="@+id/inputNameOfVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="textCapWords" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="#2d2d2d"
+        android:fontFamily="@font/officinasansstdbold"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameOfVideo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
