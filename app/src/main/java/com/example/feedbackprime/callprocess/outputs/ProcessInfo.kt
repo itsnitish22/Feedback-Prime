@@ -34,6 +34,7 @@ class ProcessInfo : Fragment() {
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         progressDialog = ProgressDialog(requireContext())
 
+        //if number of reqs of job status api is 2, show progress bar with below msg
         viewModel.countOfJobStatus.observe(requireActivity(), Observer { count ->
             if (count == 2)
                 showProgressDialog("Analysing the conversation")
@@ -43,12 +44,14 @@ class ProcessInfo : Fragment() {
         return binding.root
     }
 
+    //function to show progress bar
     private fun showProgressDialog(message: String) {
         progressDialog.setMessage(message)
         progressDialog.setCancelable(false)
         progressDialog.show()
     }
 
+    //posting access token
     private fun getAccessToken() {
         showProgressDialog("Sending to server")
         viewModel.getAccessToken()
@@ -58,6 +61,7 @@ class ProcessInfo : Fragment() {
         })
     }
 
+    //posting conversation id
     private fun getConversationId(accessToken: String, url: String, name: String) {
         viewModel.getConversationId(accessToken, url, name)
         viewModel.gotConversationId.observe(requireActivity(), Observer { conversationId ->
@@ -66,6 +70,7 @@ class ProcessInfo : Fragment() {
         })
     }
 
+    //getting job status
     private fun getJobStatusFromAPI(jobId: String, accessToken: String, conversationId: String) {
         viewModel.getJobStatus(jobId, accessToken, conversationId)
         viewModel.jobCompleted.observe(requireActivity(), Observer { statusCompleted ->
@@ -75,6 +80,7 @@ class ProcessInfo : Fragment() {
         })
     }
 
+    //getting final result
     private fun getFinalResultFromAPI(conversationId: String, accessToken: String) {
         showProgressDialog("Almost there")
         viewModel.getFinalResultFromAPI(conversationId, accessToken)
@@ -85,6 +91,7 @@ class ProcessInfo : Fragment() {
         })
     }
 
+    //showing final result in recycler view
     private fun showResultToUser(finalResult: FinalResultFromAPI?) {
         if (progressDialog.isShowing)
             progressDialog.dismiss()

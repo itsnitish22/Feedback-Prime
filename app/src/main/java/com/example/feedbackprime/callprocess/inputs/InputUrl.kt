@@ -26,7 +26,7 @@ class InputUrl : Fragment(R.layout.fragment_input_url) {
             Url = binding.inputMediaUrlEditText.text.toString()
             Name = binding.inputNameOfVideo.text.toString()
 
-            //setting errors
+            //taking input and moving to next fragment for processing
             if (Url.isNullOrEmpty()) {
                 binding.inputMediaUrlEditText.error = "URL can't be empty"
             } else if (Name.isNullOrEmpty()) {
