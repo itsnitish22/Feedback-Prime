@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
 private const val TAGProcessInfo = "Process Info View Model"
 
 class ProcessInfoViewModel : ViewModel() {
+    //variables have literal meanings
+
     var count = 0
 
     private val _gotAccessToken: MutableLiveData<AccessTokenRetrieved> = MutableLiveData()
@@ -36,6 +38,7 @@ class ProcessInfoViewModel : ViewModel() {
     val countOfJobStatus: LiveData<Int>
         get() = _countOfJobStatus
 
+    //to get accessToken
     fun getAccessToken() {
         val bodyToGenerateAccessToken = BodyToGenerateAccessToken()
         viewModelScope.launch {
@@ -47,6 +50,7 @@ class ProcessInfoViewModel : ViewModel() {
         }
     }
 
+    //to get conversationId
     fun getConversationId(accessToken: String, url: String, name: String) {
         val bodyToGetConversationId = BodyToGetConversationId(url, name)
         val headerMap = mutableMapOf<String, String>()
@@ -64,6 +68,7 @@ class ProcessInfoViewModel : ViewModel() {
         }
     }
 
+    //to get jobStatus
     fun getJobStatus(jobId: String, accessToken: String, convId: String) {
         val headerMap = mutableMapOf<String, String>()
 
@@ -83,6 +88,7 @@ class ProcessInfoViewModel : ViewModel() {
         }
     }
 
+    //to get finalResult
     fun getFinalResultFromAPI(convId: String, accessToken: String) {
         val headerMap = mutableMapOf<String, String>()
 

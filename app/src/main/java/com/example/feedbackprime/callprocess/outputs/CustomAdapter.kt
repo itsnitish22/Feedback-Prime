@@ -12,6 +12,7 @@ import com.example.feedbackprime.callprocess.api.models.Messages
 class CustomAdapter(private val messages: ArrayList<Messages>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
+    // view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_design, parent, false)
@@ -19,6 +20,7 @@ class CustomAdapter(private val messages: ArrayList<Messages>) :
         return ViewHolder(view)
     }
 
+    //binding the views with data
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsViewModel = messages[position]
         val speakerText = itemsViewModel.text
@@ -26,6 +28,8 @@ class CustomAdapter(private val messages: ArrayList<Messages>) :
         val polarityScore = itemsViewModel.sentiment.polarity.score.toDouble()
 
         holder.conversation.text = speakerText
+
+        //if the 'fromSpeaker' is null or empty show Speaker 1 and Speaker 2 instead of names (just to look good)
         if (fromSpeaker.isNullOrEmpty()) {
             if (position % 2 == 0)
                 holder.speaker.text = "Speaker 1"
@@ -42,10 +46,12 @@ class CustomAdapter(private val messages: ArrayList<Messages>) :
             holder.feedbackIcon.setImageResource(R.drawable.happy)
     }
 
+    //item count
     override fun getItemCount(): Int {
         return messages.size
     }
 
+    //view holder class specifying the views to be used
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val conversation: TextView = itemView.findViewById(R.id.conversation)
         val speaker: TextView = itemView.findViewById(R.id.speakerName)
