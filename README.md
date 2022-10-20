@@ -37,7 +37,7 @@
 
 1. Able to add locally hosted media files. And support other media formats.
 2. Next, we want to create a cross-platform service to work on a host of Operating Systems.
-3. We also plan to add a Graphic visualization and Portable Document Format with the dataset and
+3. We also plan to add a Graphic visualization and Portable Document Format along with the dataset and
    will be automated to send it to the company's e-mail, which can be used for Research and Company
    briefings.
    
