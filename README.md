@@ -25,7 +25,7 @@
 
 ## 🛠 How we built it
 
-- Symbl.ai, Kotlin, XML, Postman, Figma
+- Symbl.ai, Kotlin, XML, Postman, Figma.
 
 ## ❗Challenges we ran into:
 
