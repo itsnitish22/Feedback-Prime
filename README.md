@@ -4,7 +4,7 @@
   conversation. Keeping this amazing feature in mind, we had the idea to utilize this feature within
   customer support, to understand how to improve the customer's experience.- Our Goal Through **
   Feedback Prime** is to make this available to Many more companies to improve the Customer support
-  service worldwide.
+  service worldwide
 
 ## 💡Inspiration:
 
